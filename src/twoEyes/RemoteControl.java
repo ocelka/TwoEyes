@@ -39,7 +39,7 @@ public class RemoteControl extends Application implements NewCamcorderReceiver {
         }
         
 
-        Pane paneDachboards=null;
+        Pane paneDashboards=null;
         Pane mainVertical=null;
         
         @Override
@@ -47,20 +47,13 @@ public class RemoteControl extends Application implements NewCamcorderReceiver {
             primaryStage.setTitle("Two Eyes - Panasonic camcorders remote control");
             mainVertical=new VBox(10);
             
-            paneDachboards = new HBox(10);
-            paneDachboards.setPadding(new Insets(5,5,5,5));
-    
-            
-     //       Dashboard dashboard1=new Dashboard(1,2,3);
-  //          Dashboard dashboard2=new Dashboard(4,5,6);
-   //         pane.getChildren().add(dashboard1.asPane());
-  //          pane.getChildren().add(dashboard2.asPane());
-    //        cam1.setReceiver(dashboard1);
-    //        cam2.setReceiver(dashboard2);
+            paneDashboards = new HBox(10);
+            paneDashboards.setPadding(new Insets(5,5,5,5));
+            paneDashboards.setMinHeight(500);
 
             Logger logger=new Logger();
             
-            mainVertical.getChildren().addAll(paneDachboards,logger.asPane());
+            mainVertical.getChildren().addAll(paneDashboards,logger.asPane());
             Scene scene = new Scene(mainVertical);
       
             
@@ -83,7 +76,7 @@ public class RemoteControl extends Application implements NewCamcorderReceiver {
                  @Override public void run() {
                     UDPServer cam=new UDPServer(ip, portSeq++);
                     Dashboard dashboard=new Dashboard(999,2,3);
-                    paneDachboards.getChildren().add(dashboard.asPane());
+                    paneDashboards.getChildren().add(dashboard.asPane());
                     Logger.log(1,Logger.SOURCE.NETWORK,"new camcorder added");
                     cam.setReceiver(dashboard);
                     cam.start();
